@@ -7,7 +7,7 @@ It expects the container to be run with the environment variale `TLS_CERT`.
 On container creation the value of `TLS_CERT` will be copied into `/data/lnd/tls.cert`.
 
 ```
-docker run --rm -it -e TLS_CERT="$(pass show work/CSS/sideprojects/lnd_develop/tls_cert)" --name lnd_test normoes/lnd_client_container
+docker run --rm -it -e TLS_CERT="$(pass show lnd/tls_cert)" --name lnd_test normoes/lnd_client_container
 ```
 
 The next is jsut my personal work flow.
