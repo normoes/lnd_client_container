@@ -9,6 +9,10 @@ if [ "$SOURCE_BRANCH" = "most_recent_tag" ]; then
     export SOURCE_BRANCH="$MOST_RECENT_TAG"
 fi
 
+if [ "$SOURCE_BRANCH" = "master" ]; then
+    export SOURCE_BRANCH="latest"
+fi
+
 docker pull $IMAGE_NAME || true
 
 docker build \
