@@ -1,4 +1,4 @@
-ARG LND_VERSION="${LND_VERSION:-v0.10.0-beta}"
+ARG LND_VERSION="${LND_VERSION:-v0.11.0-beta}"
 FROM xmrto/lnd:${LND_VERSION}
 
 
