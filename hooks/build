@@ -11,7 +11,7 @@ fi
 
 if [ "$SOURCE_BRANCH" = "master" ]; then
     MASTER_COMMIT_SHA=$(curl -s https://api.github.com/repos/lightningnetwork/lnd/branches/master | grep -i name | awk 'NR==1{print $2}' | tr -d "\",")
-    export SOURCE_BRANCH="$$MASTER_COMMIT_SHA"
+    export SOURCE_BRANCH="$MASTER_COMMIT_SHA"
 fi
 
 docker pull $IMAGE_NAME || true
