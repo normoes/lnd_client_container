@@ -1,19 +1,14 @@
 #!/bin/bash
 
-# docker hub's variable 'SOURCE_BRANCH' is used as 
-# * bitcoin branch/tag to clone
-# * docker image tag to push
-
 if [ "$SOURCE_BRANCH" = "most_recent_tag" ]; then
     MOST_RECENT_TAG=$(curl -s https://api.github.com/repos/lightningnetwork/lnd/tags | grep -i name | awk 'NR==1{print $2}' | tr -d "\",")
     export SOURCE_BRANCH="$MOST_RECENT_TAG"
 fi
 
 if [ "$SOURCE_BRANCH" = "master" ]; then
-    MASTER_COMMIT_SHA=$(curl -s https://api.github.com/repos/lightningnetwork/lnd/branches/master | grep -i name | awk 'NR==1{print $2}' | tr -d "\",")
-    export SOURCE_BRANCH="$$MASTER_COMMIT_SHA"
+    MASTER_COMMIT_SHA=$(curl -s https://api.github.com/repos/lightningnetwork/lnd/branches/master | grep -i sha | awk 'NR==1{print $2}' | tr -d "\",")
+    export SOURCE_BRANCH="$MASTER_COMMIT_SHA"
 fi
-
 docker pull $IMAGE_NAME || true
 
 docker build \
